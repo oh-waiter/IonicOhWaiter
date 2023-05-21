@@ -1,0 +1,36 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Carrinho
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card *ngFor="let alimento of carrinho.alimentos" class="card">
+
+    <ion-card-header>
+      <ion-card-title>{{alimento.nome}}</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p>{{alimento.descricao}}</p>
+      <p>Quantidade: {{alimento.quantidade}}</p>
+      <p>Valor total: {{alimento.preco * alimento.quantidade | currency: "BRL"}}</p>
+      <ion-fab>
+        <div class="button-fab">
+          <ion-fab-button class="firstButton" (click)="addQuantidade(alimento)">
+            <ion-icon name="add"></ion-icon>
+          </ion-fab-button>
+          <ion-fab-button (click)="removerQuantidade(alimento)">
+            <ion-icon name="remove"></ion-icon>
+          </ion-fab-button>
+        </div>
+      </ion-fab>
+    </ion-card-content>
+  </ion-card>
+
+  <div class="buttonConteiner" *ngIf="carrinho.alimentos.length > 0">
+    <button class="buttonReserva" (click)="reservar()"> Reservar </button>
+  </div>
+</ion-content>

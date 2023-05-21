@@ -1,0 +1,41 @@
+<div id="main-content">
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Cardapio
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <ion-list>
+    <ion-item>
+      <ion-select
+        aria-label="Categoria"
+        placeholder="Selecione uma categoria"
+        (ionChange)="handleChange($event)"
+      >
+        <ion-select-option *ngFor="let categoria of categorias" value="{{categoria.nome}}">{{categoria.nome}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+  
+  <ion-card class="card-cardapio" *ngFor="let alimento of alimentos">
+    <img src="{{alimento.urlImage}}" alt="ion">
+    <ion-card-header>
+      <ion-card-title class="text-title">{{alimento.nome}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p class="text-description">{{alimento.descricao}}</p>
+      <p class="text-price">{{alimento.preco | currency : 'BRL'}}</p>
+    </ion-card-content>
+    <ion-footer class="justify-center">
+      <div>
+        <button class="buttonCarrinho" (click)="adicionarAlimentoCarrinho(alimento)"> Adicionar ao carrinho </button>
+      </div>
+    </ion-footer>
+  </ion-card>
+
+</ion-content>
+</div>

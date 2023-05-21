@@ -1,0 +1,55 @@
+{
+    "alimentos": [
+      {
+        "nome": "Strogonoff",
+        "urlImage": "https://img.itdg.com.br/images/recipes/000/002/462/365316/365316_original.jpg",
+        "descricao":"Cebola picada, arroz, batata palha, peito de frango, creme de leito, creme de mostarda",
+        "categoria" : "Comida",
+        "preco": 2.55,
+        "quantidade": 1
+      },
+      {
+        "nome": "Arroz e feijão",
+        "urlImage": "https://s2.glbimg.com/rcL3ihTnUFmnShx6AfwAN8NbJnE=/0x0:1280x800/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_1f540e0b94d8437dbbc39d567a1dee68/internal_photos/bs/2023/T/G/cF1RSiRNOC5sPLLgj71Q/arroz-e-feijao.jpg",
+        "descricao":"Arroz, feijão preto, cebola, carne de porco cozido no feijão",
+        "categoria" : "Bebida",
+        "preco": 5.00,
+        "quantidade": 1
+      },
+      {
+        "nome": "Sushi",
+        "urlImage": "https://classic.exame.com/wp-content/uploads/2017/05/sushi.jpg?quality=70&strip=info&w=1024",
+        "descricao":"Ingredientes Strognoff",
+        "categoria" : "Tira gosto",
+        "preco": 10.45,
+        "quantidade": 1
+      },
+      {
+        "nome": "Hamburguer",
+        "urlImage": "https://www.estadao.com.br/resizer/dixyOItHmPSgiedCSBL1iIT5lGo=/arc-anglerfish-arc2-prod-estadao/public/GUOGMQ4FRJIUPAWMYLE4WNA3SY.jpg",
+        "descricao":"Ingredientes Strognoff",
+        "categoria" : "Comida",
+        "preco": 7.30,
+        "quantidade": 1
+      }
+    ],
+    "categorias":[
+      {
+        "nome": "Comida"
+      },
+      {
+        "nome": "Bebida"
+      },
+      {
+      "nome": "Tira gosto"
+      },
+      {
+        "nome": "Todos"
+      }
+    ],
+    "carrinho":[
+
+    ],
+    "profile": { "name": "typicode" }
+  }
+  

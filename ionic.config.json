@@ -1,0 +1,7 @@
+{
+  "name": "ohwaiter-ionic",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

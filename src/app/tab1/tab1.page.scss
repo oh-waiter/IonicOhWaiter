@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap');
+
+.text-center{
+    text-align: center;
+}
+
+.card-cardapio{
+    margin: 2rem 0.5rem;
+    background-color: #303030;
+}
+
+.text-title{
+    color: #FF6600;
+    font-family: 'Dancing Script', cursive;
+    font-size: 2rem;
+}
+
+.text-description{
+    color: #E3E3E3;
+}
+
+.text-price{
+    font-size: 2rem;
+    margin-top: 10px;
+    color: #FF6600;
+    font-family: 'Dancing Script', cursive;
+}
+
+.justify-center{
+    display: flex;
+    justify-content: center
+}
+
+.buttonCarrinho{
+    margin: 10px 0;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: large;
+    font-weight: 600;
+    background-color: #FF6600;
+    color: white;
+}

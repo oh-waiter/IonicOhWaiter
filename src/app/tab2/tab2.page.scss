@@ -1,0 +1,28 @@
+.card{
+    min-height: 18rem;
+}
+
+.button-fab{
+    width: 100%;
+    margin-top: 3rem;
+    display: flex;
+    justify-content: end;
+}
+
+.firstButton{
+    margin-right: 0.5rem;
+}
+
+.buttonConteiner{
+    display: flex;
+}
+
+.buttonReserva{
+    margin: 10px auto;
+    border-radius: 10px;
+    padding: 12px 3rem;
+    font-size: large;
+    font-weight: 600;
+    background-color: #FF6600;
+    color: white;
+}
