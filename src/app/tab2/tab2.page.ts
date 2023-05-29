@@ -1,7 +1,7 @@
-import { Alimento } from './../service/model/alimento.model';
 import { Carrinho } from './../service/model/carrinho.model';
 import { CarrinhoService } from './../service/carrinho.service';
 import { Component, OnInit } from '@angular/core';
+import { Cardapio } from '../service/model/cardapio.model';
 
 @Component({
   selector: 'app-tab2',
@@ -10,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class Tab2Page implements OnInit{
 
-  carrinho: Carrinho = {"alimentos": []}
+  carrinho: Carrinho = {"cardapios": []}
   mostrarBotao = false;
 
   constructor(private carrinhoService: CarrinhoService) {}
@@ -19,12 +19,12 @@ export class Tab2Page implements OnInit{
     this.carrinho = this.carrinhoService.getCarrinho();
   }
 
-  addQuantidade(alimento: Alimento){
-    this.carrinhoService.addCarrinho(alimento);
+  addQuantidade(cardapio: Cardapio){
+    this.carrinhoService.addCarrinho(cardapio);
   }
 
-  removerQuantidade(alimento: Alimento){
-    this.carrinhoService.removeCarrinho(alimento);
+  removerQuantidade(cardapio: Cardapio){
+    this.carrinhoService.removeCarrinho(cardapio);
   }
 
   reservar(){

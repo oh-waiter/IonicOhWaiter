@@ -16,23 +16,23 @@
         placeholder="Selecione uma categoria"
         (ionChange)="handleChange($event)"
       >
-        <ion-select-option *ngFor="let categoria of categorias" value="{{categoria.nome}}">{{categoria.nome}}</ion-select-option>
+        <ion-select-option *ngFor="let categoria of categorias" value="{{categoria.id}}">{{categoria.nome}}</ion-select-option>
       </ion-select>
     </ion-item>
   </ion-list>
   
-  <ion-card class="card-cardapio" *ngFor="let alimento of alimentos">
-    <img src="{{alimento.urlImage}}" alt="ion">
+  <ion-card class="card-cardapio" *ngFor="let cardapio of cardapios">
+    <img src="{{cardapio.urlImage}}" alt="ion">
     <ion-card-header>
-      <ion-card-title class="text-title">{{alimento.nome}}</ion-card-title>
+      <ion-card-title class="text-title">{{cardapio.nome}}</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <p class="text-description">{{alimento.descricao}}</p>
-      <p class="text-price">{{alimento.preco | currency : 'BRL'}}</p>
+      <p class="text-description">{{cardapio.descricao}}</p>
+      <p class="text-price">{{cardapio.preco | currency : 'BRL'}}</p>
     </ion-card-content>
     <ion-footer class="justify-center">
       <div>
-        <button class="buttonCarrinho" (click)="adicionarAlimentoCarrinho(alimento)"> Adicionar ao carrinho </button>
+        <button class="buttonCarrinho" (click)="adicionarAlimentoCarrinho(cardapio)"> Adicionar ao carrinho </button>
       </div>
     </ion-footer>
   </ion-card>

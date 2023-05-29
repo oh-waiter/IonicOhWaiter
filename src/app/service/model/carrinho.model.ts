@@ -1,5 +1,5 @@
-import { Alimento } from "./alimento.model";
+import { Cardapio } from "./cardapio.model";
 
 export interface Carrinho{
-    alimentos: Alimento[]
+    cardapios: Cardapio[]
 }

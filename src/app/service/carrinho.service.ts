@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { throwError } from 'rxjs';
-import { catchError} from 'rxjs/operators';
-import { Alimento } from './model/alimento.model';
+import { HttpClient } from '@angular/common/http';
 import { Carrinho } from './model/carrinho.model';
+import { Cardapio } from './model/cardapio.model';
 
 @Injectable({
   providedIn: 'root'
@@ -13,49 +11,39 @@ export class CarrinhoService {
 
   url = "http://localhost:3000/";
   context = "carrinho";
-  carrinho: Carrinho = { "alimentos": []};
+  carrinho: Carrinho = { "cardapios": [] };
 
-  getCarrinho(){
+  getCarrinho() {
     return this.carrinho;
   }
 
-  addCarrinho(alimento: Alimento){
-
+  addCarrinho(cardapio: Cardapio) {
     let existe = false;
-    if(this.carrinho.alimentos.length !== 0 ){
-        this.carrinho.alimentos.map((alimentos) => {
-            if(alimentos.nome === alimento.nome){
-                existe = true;
-                alimentos.quantidade++;
-            }
-        })
+    if (this.carrinho.cardapios.length !== 0) {
+      this.carrinho.cardapios.map((cardapio) => {
+        if (cardapio.nome === cardapio.nome) {
+          existe = true;
+          cardapio.quantidade++;
+        }
+      })
     }
 
-    if(existe === false){
-        alimento.quantidade = 1;
-        this.carrinho.alimentos.push(alimento);
+    if (existe === false) {
+      cardapio.quantidade = 1;
+      this.carrinho.cardapios.push(cardapio);
     }
 
   }
 
-  removeCarrinho(alimento: Alimento){
-    if(this.carrinho.alimentos.length !== 0 ){
-        this.carrinho.alimentos.map((alimentos) => {
-            if(alimentos.nome === alimento.nome){
-                alimentos.quantidade--;
-                this.carrinho.alimentos = this.carrinho.alimentos.filter(alimento => alimento.quantidade > 0);
-            }
-        })
+  removeCarrinho(cardapio: Cardapio) {
+    if (this.carrinho.cardapios.length !== 0) {
+      this.carrinho.cardapios.map((cardapio) => {
+        if (cardapio.nome === cardapio.nome) {
+          cardapio.quantidade--;
+          this.carrinho.cardapios = this.carrinho.cardapios.filter(cardapio => cardapio.quantidade > 0);
+        }
+      })
     }
-  }
-
-  private handleError(error: HttpErrorResponse){
-    if(error.status === 0){
-      console.error('Ocorreu um erro:', error.error);
-    } else {
-      console.error(`Codigo de retorno do erro ${error.status}, e o corpo do erro é: `, error.error);
-    }  
-    return throwError(() => new Error('Algo não deu certo; Tente novamente mais tarde'));
   }
 
 }

@@ -1,9 +1,9 @@
-import { Alimento } from './../service/model/alimento.model';
 import { CarrinhoService } from './../service/carrinho.service';
 import { Categoria } from './../service/model/categoria.model';
 import { Component, OnInit } from '@angular/core';
 import { CategoriaService } from '../service/categoria.service';
-import { AlimentoService } from '../service/alimento.service';
+import { CardapioService } from '../service/cardapio.service';
+import { Cardapio } from '../service/model/cardapio.model';
 
 @Component({
   selector: 'app-tab1',
@@ -13,27 +13,27 @@ import { AlimentoService } from '../service/alimento.service';
 export class Tab1Page implements OnInit{
 
   categorias: Categoria[] = [];
-  alimentos: Alimento[] = [];
+  cardapios: Cardapio[] = [];
 
   constructor(private categoriaService: CategoriaService, 
-              private alimentoService: AlimentoService, 
+              private cardapioService: CardapioService, 
               private carrinhoService: CarrinhoService) {}
 
   ngOnInit(): void {
-    this.categoriaService.getCategorias().subscribe((data: Categoria[]) => {this.categorias = data});  
-    this.alimentoService.getAlimentos().subscribe((data: Alimento[]) => {this.alimentos = data}); 
+    this.categoriaService.buscarTodasCategorias().subscribe((data: Categoria[]) => {this.categorias = data});  
+    this.cardapioService.buscarTodosCardapios().subscribe((data: Cardapio[]) => {this.cardapios = data}); 
   }
 
   handleChange(e: any) {
     if(e.detail.value === 'Todos'){
-      this.alimentoService.getAlimentos().subscribe((data: Alimento[]) => {this.alimentos = data}); 
+      this.cardapioService.buscarTodosCardapios().subscribe((data: Cardapio[]) => {this.cardapios = data}); 
     }else{
-      this.alimentoService.getAlimentosByCategoria(e.detail.value).subscribe((data: Alimento[]) => {this.alimentos = data}); 
+      this.cardapioService.buscarCardapioPorCategoria(e.detail.value).subscribe((data: Cardapio[]) => {this.cardapios = data}); 
     }
   }
 
-  adicionarAlimentoCarrinho(alimento: Alimento){
-    this.carrinhoService.addCarrinho(alimento);
+  adicionarAlimentoCarrinho(cardapio: Cardapio){
+    this.carrinhoService.addCarrinho(cardapio);
   }
 
 }
