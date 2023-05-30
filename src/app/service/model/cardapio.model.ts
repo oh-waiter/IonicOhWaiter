@@ -6,6 +6,7 @@ export interface Cardapio {
   "urlImage": string,
   "descricao": string,
   "categoria": Categoria,
+  "tempoDePreparo": number,
   "preco": number,
   "quantidade": number
 }
