@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Reserva } from '../service/model/reserva.model';
+import { ReservaService } from '../service/reserva.service';
+import { Cardapio } from '../service/model/cardapio.model';
 
 @Component({
   selector: 'app-tab3',
@@ -6,11 +9,43 @@ import { Component } from '@angular/core';
   styleUrls: ['tab3.page.scss']
 })
 export class Tab3Page {
+  reserva: Reserva = {
+    id: null,
+    codigo: "",
+    status: "",
+    reservaCardapios: [],
+    tempoTotalPreparo: 0,
+    precoTotal: 0,
+    nomeCliente: "",
+    cpf: "",
+    dataReserva: ""
+  };
+  reservaEncontrada = false;
+  error = false;
+  mensagemErro = "";
 
-  constructor() {}
+  constructor(private reservaService: ReservaService) { }
 
-
-  buscarReserva(){
-
+  buscarReserva() {
+    if (this.reserva.codigo) {
+      this.reservaService.obterReservaPorCodigo(this.reserva.codigo)
+        .subscribe(
+          reserva => {
+            this.reserva = reserva;
+            this.reservaEncontrada = true;
+          },
+          error => {
+            this.reservaEncontrada = false;
+            this.error = true;
+            this.mensagemErro = error;
+          }
+        );
+    } else {
+      this.reservaEncontrada = false;
+    }
+  }
+  
+  calcularPrecoTotal(cardapio: Cardapio): number {
+    return cardapio.preco * cardapio.quantidade;
   }
 }

@@ -18,12 +18,13 @@ export class CarrinhoService {
   }
 
   addCarrinho(cardapio: Cardapio) {
+
     let existe = false;
     if (this.carrinho.cardapios.length !== 0) {
-      this.carrinho.cardapios.map((cardapio) => {
-        if (cardapio.nome === cardapio.nome) {
+      this.carrinho.cardapios.map((item) => {
+        if (item.nome === cardapio.nome) {
           existe = true;
-          cardapio.quantidade++;
+          item.quantidade++;
         }
       })
     }
@@ -37,10 +38,10 @@ export class CarrinhoService {
 
   removeCarrinho(cardapio: Cardapio) {
     if (this.carrinho.cardapios.length !== 0) {
-      this.carrinho.cardapios.map((cardapio) => {
-        if (cardapio.nome === cardapio.nome) {
-          cardapio.quantidade--;
-          this.carrinho.cardapios = this.carrinho.cardapios.filter(cardapio => cardapio.quantidade > 0);
+      this.carrinho.cardapios.map((item) => {
+        if (item.nome === cardapio.nome) {
+          item.quantidade--;
+          this.carrinho.cardapios = this.carrinho.cardapios.filter(item => item.quantidade > 0);
         }
       })
     }

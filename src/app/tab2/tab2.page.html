@@ -7,8 +7,10 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-card *ngFor="let cardapio of carrinho.cardapios" class="card">
 
+
+
+  <ion-card *ngFor="let cardapio of carrinho.cardapios" class="card">
     <ion-card-header>
       <ion-card-title>{{cardapio.nome}}</ion-card-title>
     </ion-card-header>
@@ -30,7 +32,36 @@
     </ion-card-content>
   </ion-card>
 
-  <div class="buttonConteiner" *ngIf="carrinho.cardapios.length > 0">
-    <button class="buttonReserva" (click)="reservar()"> Reservar </button>
+  <form (ngSubmit)="ajustarReserva()" #reservaForm="ngForm" *ngIf="carrinho.cardapios.length > 0">
+    <ion-item>
+      <ion-label position="stacked">Nome</ion-label>
+      <ion-input type="text" name="nome" [(ngModel)]="reserva.nomeCliente" required></ion-input>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-label position="stacked">CPF</ion-label>
+      <ion-input type="text" name="cpf" [(ngModel)]="reserva.cpf" required pattern="[0-9]{3}\.[0-9]{3}\.[0-9]{3}-[0-9]{2}" #cpfInput="ngModel"></ion-input>
+      <div *ngIf="cpfInput.invalid && (cpfInput.dirty || cpfInput.touched)" class="error-message">
+        O CPF informado é inválido, ele precisa ser informado com pontuação (XXX.XXX.XXX-XX)
+      </div>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label position="stacked">Data da reserva</ion-label>
+      <ion-datetime displayFormat="DD/MM/YYYY" name="dataReserva" [(ngModel)]="reserva.dataReserva" required #dataReservaInput="ngModel" [min]="minDate"></ion-datetime>
+      <div *ngIf="dataReservaInput.invalid && (dataReservaInput.dirty || dataReservaInput.touched)" class="error-message">
+        A data da reserva deve ser maior que a data atual.
+      </div>
+    </ion-item>
+  
+
+    <div class="buttonConteiner">
+      <button class="buttonReserva" type="submit"> Reservar </button>
+    </div>
+  </form>
+
+  <div *ngIf="reservaStatus" [class]="reservaStatus === 'success' ? 'success-message' : 'error-message'">
+    {{ reservaStatus === 'success' ? 'Reserva realizada com sucesso!' : 'Erro ao fazer reserva.' }}
   </div>
 </ion-content>

@@ -20,12 +20,16 @@ export class Tab1Page implements OnInit{
               private carrinhoService: CarrinhoService) {}
 
   ngOnInit(): void {
-    this.categoriaService.buscarTodasCategorias().subscribe((data: Categoria[]) => {this.categorias = data});  
-    this.cardapioService.buscarTodosCardapios().subscribe((data: Cardapio[]) => {this.cardapios = data}); 
+    this.categoriaService.buscarTodasCategorias().subscribe((data: Categoria[]) => {
+      this.categorias = data
+      this.categorias.push({id: 0, nome: 'Todos'});
+    });  
+    this.cardapioService.buscarTodosCardapios().subscribe((data: Cardapio[]) => {this.cardapios = data});
+    
   }
 
   handleChange(e: any) {
-    if(e.detail.value === 'Todos'){
+    if(e.detail.value === '0'){
       this.cardapioService.buscarTodosCardapios().subscribe((data: Cardapio[]) => {this.cardapios = data}); 
     }else{
       this.cardapioService.buscarCardapioPorCategoria(e.detail.value).subscribe((data: Cardapio[]) => {this.cardapios = data}); 

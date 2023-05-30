@@ -16,7 +16,10 @@ registerLocaleData(ptBr);
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },  { provide: LOCALE_ID, useValue: 'pt' }],
+  providers: [
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },  
+    { provide: LOCALE_ID, useValue: 'pt' }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
