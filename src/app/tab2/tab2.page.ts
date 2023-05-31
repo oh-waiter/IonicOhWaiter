@@ -2,8 +2,11 @@ import { Carrinho } from './../service/model/carrinho.model';
 import { CarrinhoService } from './../service/carrinho.service';
 import { Component, OnInit } from '@angular/core';
 import { Cardapio } from '../service/model/cardapio.model';
-import { Reserva, ReservaCardapio } from '../service/model/reserva.model';
+import { Reserva } from '../service/model/reserva.model';
 import { ReservaService } from '../service/reserva.service';
+import { ToastController } from '@ionic/angular';
+import { Router } from '@angular/router';
+import { cpf } from 'cpf-cnpj-validator';
 
 @Component({
   selector: 'app-tab2',
@@ -26,7 +29,10 @@ export class Tab2Page implements OnInit{
     dataReserva: this.minDate = new Date().toISOString()
   };
 
-  constructor(private carrinhoService: CarrinhoService, private reservaService: ReservaService) {
+  constructor(private carrinhoService: CarrinhoService, 
+              private reservaService: ReservaService,
+              private router: Router,
+              private toastController: ToastController) {
   }
 
   ngOnInit(): void {
@@ -42,6 +48,11 @@ export class Tab2Page implements OnInit{
   }
 
   ajustarReserva() {
+    if (!cpf.isValid(this.reserva.cpf)) {
+      this.EnviarMensagem("CPF inválido, coloque no padrão ou verifique os números", 'error');
+      return; // Abortar a função se o CPF for inválido
+    }
+
     let tempoTotalPreparo = 0;
     let precoTotal = 0;
 
@@ -90,9 +101,23 @@ export class Tab2Page implements OnInit{
           cpf: "",
           dataReserva: this.minDate = new Date().toISOString()
         };
+        this.EnviarMensagem("Reserva efetuada com sucesso", 'success'); // Passando 'success' como segundo parâmetro
+        this.router.navigate(['/cardapio']);
       });
     } catch (error) {
+      this.EnviarMensagem("Ocorreu um erro ao tentar criar a reserva.", 'error'); // Passando 'error' como segundo parâmetro
       this.reservaStatus = 'error';
     }
   }
+
+  async EnviarMensagem(mensagem: string, status: string) {
+    const toast = await this.toastController.create({
+      message: mensagem,
+      duration: 2000, // Duração em milissegundos
+      position: 'top', // Posição da snackbar na tela ('top', 'bottom' ou 'middle')
+      cssClass: status // Usando o status como a classe CSS personalizada
+    });
+    toast.present();
+  }
+  
 }

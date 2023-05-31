@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Reserva, ReservaCardapio } from '../service/model/reserva.model';
 import { ReservaService } from '../service/reserva.service';
-import { Cardapio } from '../service/model/cardapio.model';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab3',
@@ -24,7 +24,8 @@ export class Tab3Page {
   error = false;
   mensagemErro = "";
 
-  constructor(private reservaService: ReservaService) { }
+  constructor(private reservaService: ReservaService,
+              private toastController: ToastController) { }
 
   buscarReserva() {
     if (this.reserva.codigo) {
@@ -37,7 +38,7 @@ export class Tab3Page {
           error => {
             this.reservaEncontrada = false;
             this.error = true;
-            this.mensagemErro = error;
+            this.EnviarMensagem("Não foi possível trazer a reserva, verifique se o código está correto.", "error")
           }
         );
     } else {
@@ -54,6 +55,18 @@ export class Tab3Page {
     const dia = data.getDate();
     const mes = (data.getMonth() + 1).toString().padStart(2, '0');
     const ano = data.getFullYear();
-    return `${dia}/${mes}/${ano}`;
+    const horas = data.getHours().toString().padStart(2, '0');
+    const minutos = data.getMinutes().toString().padStart(2, '0');
+    return `${dia}/${mes}/${ano} ${horas}:${minutos}`;
+  }
+
+  async EnviarMensagem(mensagem: string, status: string) {
+    const toast = await this.toastController.create({
+      message: mensagem,
+      duration: 2000, // Duração em milissegundos
+      position: 'top', // Posição da snackbar na tela ('top', 'bottom' ou 'middle')
+      cssClass: status // Usando o status como a classe CSS personalizada
+    });
+    toast.present();
   }
 }

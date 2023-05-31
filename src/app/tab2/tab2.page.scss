@@ -33,8 +33,12 @@
     margin-top: 5px;
 }
 
-.success-message {
-    color: green;
-    font-size: 20px;
-    margin-top: 5px;
-}
+.success {
+    --background: #2ecc71; // Cor de fundo verde para sucesso
+    --color: #ffffff; // Cor do texto branca
+  }
+  
+  .error {
+    --background: #e74c3c; // Cor de fundo vermelho claro para erro
+    --color: #ffffff; // Cor do texto branca
+  }
