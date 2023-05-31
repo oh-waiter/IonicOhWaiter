@@ -20,21 +20,21 @@
       {{ mensagemErro }}
     </div>
     
-    <div *ngIf="reservaEncontrada">
+    <div  class="recibo-container" *ngIf="reservaEncontrada">
       <h2>Recibo da Reserva</h2>
       <p><strong>Código:</strong> {{ reserva.codigo }}</p>
       <p><strong>Status:</strong> {{ reserva.status }}</p>
       <p><strong>Nome do Cliente:</strong> {{ reserva.nomeCliente }}</p>
       <p><strong>CPF:</strong> {{ reserva.cpf }}</p>
-      <p><strong>Data da Reserva:</strong> {{ reserva.dataReserva }}</p>
+      <p><strong>Data da Reserva:</strong> {{ formatarData(reserva.dataReserva) }}</p>
       <p><strong>Preço Total:</strong> {{ reserva.precoTotal | currency: "BRL" }}</p>
       
       <h3>Cardápios:</h3>
-      <div *ngFor="let reservaCardapio of reserva.reservaCardapios">
+      <div *ngFor="let reservaCardapio of reserva.reservaCardapios" class="cardapio-item">
         <p><strong>Nome:</strong> {{ reservaCardapio.cardapio.nome }}</p>
         <p><strong>Quantidade:</strong> {{ reservaCardapio.quantidade }}</p>
         <p><strong>Preço Unitário:</strong> {{ reservaCardapio.cardapio.preco | currency: "BRL" }}</p>
-        <p><strong>Preço Total:</strong> {{ calcularPrecoTotal(reservaCardapio.cardapio) | currency: "BRL" }}</p>
+        <p><strong>Preço Total:</strong> {{ calcularPrecoTotal(reservaCardapio) | currency: "BRL" }}</p>
       </div>
     </div>
   </div>

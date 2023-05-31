@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Reserva } from '../service/model/reserva.model';
+import { Reserva, ReservaCardapio } from '../service/model/reserva.model';
 import { ReservaService } from '../service/reserva.service';
 import { Cardapio } from '../service/model/cardapio.model';
 
@@ -44,8 +44,16 @@ export class Tab3Page {
       this.reservaEncontrada = false;
     }
   }
-  
-  calcularPrecoTotal(cardapio: Cardapio): number {
-    return cardapio.preco * cardapio.quantidade;
+
+  calcularPrecoTotal(cardapio: ReservaCardapio): number {
+    return cardapio.cardapio.preco * cardapio.quantidade;
+  }
+
+  formatarData(dataReserva: string): string {
+    const data = new Date(dataReserva);
+    const dia = data.getDate();
+    const mes = (data.getMonth() + 1).toString().padStart(2, '0');
+    const ano = data.getFullYear();
+    return `${dia}/${mes}/${ano}`;
   }
 }

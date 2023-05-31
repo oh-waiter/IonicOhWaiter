@@ -32,14 +32,6 @@ export class ReservaService {
       );
   }
 
-  cancelarReserva(id: number): Observable<string> {
-    const url = `${this.apiUrl}/${id}/cancelar`;
-    return this.http.put<string>(url, {})
-      .pipe(
-        catchError(this.handleError)
-      );
-  }
-
   private handleError(error: any): Observable<never> {
     console.error('Ocorreu um erro:', error);
     return throwError('Erro ao processar a solicitação. Por favor, tente novamente mais tarde.');
