@@ -17,6 +17,7 @@ export class Tab3Page {
     tempoTotalPreparo: 0,
     precoTotal: 0,
     nomeCliente: "",
+    email: "",
     cpf: "",
     dataReserva: ""
   };
@@ -52,7 +53,7 @@ export class Tab3Page {
 
   formatarData(dataReserva: string): string {
     const data = new Date(dataReserva);
-    const dia = data.getDate();
+    const dia = data.getDate().toString().padStart(2, '0');
     const mes = (data.getMonth() + 1).toString().padStart(2, '0');
     const ano = data.getFullYear();
     const horas = data.getHours().toString().padStart(2, '0');

@@ -8,9 +8,6 @@ import { Cardapio } from './model/cardapio.model';
 })
 export class CarrinhoService {
   constructor(private http: HttpClient) { }
-
-  url = "http://localhost:3000/";
-  context = "carrinho";
   carrinho: Carrinho = { "cardapios": [] };
 
   getCarrinho() {

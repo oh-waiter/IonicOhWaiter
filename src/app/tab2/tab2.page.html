@@ -43,6 +43,11 @@
       <ion-label position="stacked">CPF</ion-label>
       <ion-input type="text" name="cpf" [(ngModel)]="reserva.cpf" required #cpfInput="ngModel"></ion-input>
     </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Email</ion-label>
+      <ion-input type="text" name="email" [(ngModel)]="reserva.email" required></ion-input>
+    </ion-item>
   
     <ion-item>
       <ion-label position="stacked">Data da reserva</ion-label>
@@ -57,4 +62,9 @@
       <button class="buttonReserva" type="submit"> Reservar </button>
     </div>
   </form>
+
+  <ion-toast id="successToast" color="success" position="top" class="toast-success" *ngIf="showSuccessToast">
+    <ion-icon name="checkmark-circle-outline"></ion-icon>
+    <ion-label>Sua reserva foi realizada com sucesso, seu código da reserva é {{ reserva.codigo }}</ion-label>
+  </ion-toast>
 </ion-content>

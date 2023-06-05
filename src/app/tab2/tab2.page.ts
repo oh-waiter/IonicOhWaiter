@@ -25,9 +25,12 @@ export class Tab2Page implements OnInit{
     tempoTotalPreparo: 0,
     precoTotal: 0,
     nomeCliente: "",
+    email: "",
     cpf: "",
     dataReserva: this.minDate = new Date().toISOString()
   };
+  reservaCodigo = "";
+  showSuccessToast = false;
 
   constructor(private carrinhoService: CarrinhoService, 
               private reservaService: ReservaService,
@@ -88,7 +91,7 @@ export class Tab2Page implements OnInit{
 
   reservar() {
     try {
-      this.reservaService.criarReserva(this.reserva).subscribe(() => {
+      this.reservaService.criarReserva(this.reserva).subscribe((reservaApi) => {
         this.reservaStatus = 'success';
         this.reserva = {
           id: null,
@@ -98,11 +101,14 @@ export class Tab2Page implements OnInit{
           tempoTotalPreparo: 0,
           precoTotal: 0,
           nomeCliente: "",
+          email: "",
           cpf: "",
           dataReserva: this.minDate = new Date().toISOString()
         };
-        this.EnviarMensagem("Reserva efetuada com sucesso", 'success'); // Passando 'success' como segundo parâmetro
+        this.reservaCodigo = reservaApi.codigo;
+        this.EnviarMensagem(`Reserva efetuada com sucesso código da reserva é: ${this.reservaCodigo} também enviamos via email`, 'success');
         this.router.navigate(['/cardapio']);
+        
       });
     } catch (error) {
       this.EnviarMensagem("Ocorreu um erro ao tentar criar a reserva.", 'error'); // Passando 'error' como segundo parâmetro
@@ -113,9 +119,9 @@ export class Tab2Page implements OnInit{
   async EnviarMensagem(mensagem: string, status: string) {
     const toast = await this.toastController.create({
       message: mensagem,
-      duration: 2000, // Duração em milissegundos
+      duration: 20000, // Duração em milissegundos
       position: 'top', // Posição da snackbar na tela ('top', 'bottom' ou 'middle')
-      cssClass: status // Usando o status como a classe CSS personalizada
+      cssClass: status === 'success' ? 'toast-success' : 'toast-error' // Usando o status como a classe CSS personalizada
     });
     toast.present();
   }

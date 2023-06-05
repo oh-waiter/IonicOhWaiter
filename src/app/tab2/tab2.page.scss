@@ -1,23 +1,23 @@
-.card{
+.card {
     min-height: 18rem;
 }
 
-.button-fab{
+.button-fab {
     width: 100%;
     margin-top: 3rem;
     display: flex;
     justify-content: end;
 }
 
-.firstButton{
+.firstButton {
     margin-right: 0.5rem;
 }
 
-.buttonConteiner{
+.buttonConteiner {
     display: flex;
 }
 
-.buttonReserva{
+.buttonReserva {
     margin: 10px auto;
     border-radius: 10px;
     padding: 12px 3rem;
@@ -36,9 +36,28 @@
 .success {
     --background: #2ecc71; // Cor de fundo verde para sucesso
     --color: #ffffff; // Cor do texto branca
-  }
-  
-  .error {
+}
+
+.error {
     --background: #e74c3c; // Cor de fundo vermelho claro para erro
     --color: #ffffff; // Cor do texto branca
-  }
+}
+
+.toast-success {
+    --background: #2ecc71;
+    /* Cor de fundo do toast */
+    --color: #ffffff;
+    /* Cor do texto do toast */
+    --ion-color-base: var(--background);
+    --ion-color-contrast: var(--color);
+
+    .toast-message {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+
+        ion-icon {
+            margin-right: 8px;
+        }
+    }
+}

@@ -8,6 +8,7 @@ export interface Reserva {
   tempoTotalPreparo: number;
   precoTotal: number;
   nomeCliente: string;
+  email: string;
   cpf: string;
   dataReserva: string;
 }

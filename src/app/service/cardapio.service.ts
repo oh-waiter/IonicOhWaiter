@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Cardapio } from './model/cardapio.model';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CardapioService {
-  private apiUrl = 'http://localhost:8080/cardapios';
+   private apiUrl = `${environment.urlApi}cardapios`;
 
   constructor(private http: HttpClient) { }
 
